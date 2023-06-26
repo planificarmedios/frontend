@@ -1,56 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Col, Container, Nav, Navbar, Row } from 'react-bootstrap'
 import { sampleProducts } from './data'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
+    <div className="d-flex flex-column vh-100">
       <header>
-        <div>
-          <a href="https://vitejs.dev" target="_blank">
-            <img src={viteLogo} className="logo" alt="Vite logo" />
-          </a>
-          <a href="https://react.dev" target="_blank">
-            <img src={reactLogo} className="logo react" alt="React logo" />
-          </a>
-        </div>
+        <Navbar bg="dark" variant="dark" expand="lg">
+          <Container>
+            <Navbar.Brand>tsamazona</Navbar.Brand>
+          </Container>
+          <Nav>
+            <a href="/cart" className="nav-link">
+              Cart
+            </a>
+            <a href="/signin" className="nav-link">
+              Sign In
+            </a>
+          </Nav>
+        </Navbar>
       </header>
       <main>
-        <h1>Vite + React</h1>
-        <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test HMR
-          </p>
-        </div>
         <main>
-          <ul>
-            {sampleProducts.map((product) => (
-              <li key={product.slug}>
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="product-image"
-                />
-                <h2>{product.name}</h2>
-                <p>${product.price}</p>
-              </li>
-            ))}
-          </ul>
+          <Container className="m-3 mt-2">
+            <Row>
+              {sampleProducts.map((product) => (
+                <Col key={product.slug} sm={6} md={4} lg={3}>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="product-image"
+                  />
+                  <h6>{product.name}</h6>
+                  <p>
+                    ${product.price} En Stock {product.countInStock}{' '}
+                  </p>
+                </Col>
+              ))}
+            </Row>
+          </Container>
         </main>
       </main>
       <footer>
-        <p className="read-the-docs">
-          Click on the Vite and React logos to learn more
-        </p>
+        <div className="text-center">All rights reserved</div>
       </footer>
-    </>
+    </div>
   )
 }
 
